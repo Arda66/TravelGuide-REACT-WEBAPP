@@ -1,4 +1,27 @@
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
+
+// Destination card'ı ayrı bir bileşen olarak çıkaralım
+const DestinationCard = memo(({ dest, onSelect }) => (
+  <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+    <img
+      src={dest.image}
+      alt={dest.title}
+      className="w-full h-48 object-cover"
+      loading="lazy" // Lazy loading ekledik
+    />
+    <div className="p-4">
+      <h3 className="text-xl font-bold mb-2">{dest.title}</h3>
+      <p className="text-gray-600 line-clamp-2">{dest.description}</p>
+      <p className="text-blue-600 font-semibold my-2">{dest.price}</p>
+      <button
+        onClick={() => onSelect(dest)}
+        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+      >
+        Detayları Gör
+      </button>
+    </div>
+  </div>
+));
 
 function TravelList({ searchQuery }) {
   const [selectedDest, setSelectedDest] = useState(null);
@@ -80,39 +103,39 @@ function TravelList({ searchQuery }) {
     }, 2000);
   };
 
-  const filteredDestinations = destinations.filter(
-    (dest) =>
-      dest.title.toLowerCase().includes(searchQuery?.toLowerCase() || "") ||
-      dest.description.toLowerCase().includes(searchQuery?.toLowerCase() || "")
+  // Filtreleme işlemini useMemo ile optimize ettik
+  const filteredDestinations = useMemo(
+    () =>
+      destinations.filter(
+        (dest) =>
+          dest.title.toLowerCase().includes(searchQuery?.toLowerCase() || "") ||
+          dest.description
+            .toLowerCase()
+            .includes(searchQuery?.toLowerCase() || "")
+      ),
+    [searchQuery]
   );
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredDestinations.map((dest) => (
-          <div
-            key={dest.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
-          >
-            <img
-              src={dest.image}
-              alt={dest.title}
-              className="w-full h-48 object-cover"
+      {filteredDestinations.length === 0 ? (
+        <div className="text-center text-gray-600 py-8">
+          <p className="text-xl">
+            Aradığınız kriterlere uygun destinasyon bulunamadı.
+          </p>
+          <p className="mt-2">Lütfen farklı bir arama yapmayı deneyin.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredDestinations.map((dest) => (
+            <DestinationCard
+              key={dest.id}
+              dest={dest}
+              onSelect={setSelectedDest}
             />
-            <div className="p-4">
-              <h3 className="text-xl font-bold mb-2">{dest.title}</h3>
-              <p className="text-gray-600 line-clamp-2">{dest.description}</p>
-              <p className="text-blue-600 font-semibold my-2">{dest.price}</p>
-              <button
-                onClick={() => setSelectedDest(dest)}
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-              >
-                Detayları Gör
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Improved Modal */}
       {selectedDest && (
@@ -163,4 +186,5 @@ function TravelList({ searchQuery }) {
   );
 }
 
-export default TravelList;
+// Bileşeni memo ile sarmalayarak export ediyoruz
+export default memo(TravelList);

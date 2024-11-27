@@ -88,7 +88,10 @@ function Header({ onSearch }) {
           </li>
           <li>
             <button
-              onClick={() => setIsSearchVisible(!isSearchVisible)}
+              onClick={() => {
+                handleNavigation("destinations");
+                setIsSearchVisible(!isSearchVisible);
+              }}
               className="hover:text-blue-200"
             >
               🔍

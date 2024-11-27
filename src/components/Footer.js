@@ -76,7 +76,7 @@ function Footer() {
         </div>
 
         <div className="mt-8 pt-4 border-t border-gray-700 text-center text-gray-400">
-          <p>&copy; 2023 TravelGuide. Tüm hakları saklıdır.</p>
+          <p>&copy; 2024 TravelGuide. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
