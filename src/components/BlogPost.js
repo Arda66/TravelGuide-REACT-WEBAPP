@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import ShareButtons from "./ShareButtons";
 
 function BlogPost() {
   const { id } = useParams();
@@ -359,13 +360,16 @@ function BlogPost() {
         />
 
         <div className="p-8">
-          <div className="flex items-center gap-3 text-sm text-gray-600 mb-6">
-            <span className="px-3 py-1 bg-gray-100 rounded-full">
-              {post.category}
-            </span>
-            <span>{post.date}</span>
-            <span>•</span>
-            <span className="font-medium">{post.author}</span>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3 text-sm text-gray-600">
+              <span className="px-3 py-1 bg-gray-100 rounded-full">
+                {post.category}
+              </span>
+              <span>{post.date}</span>
+              <span>•</span>
+              <span className="font-medium">{post.author}</span>
+            </div>
+            <ShareButtons url={window.location.href} title={post.title} />
           </div>
 
           <h1 className="text-4xl font-bold mb-8 text-gray-900">

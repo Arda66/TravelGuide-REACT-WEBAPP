@@ -1,27 +1,44 @@
 import { useState, useMemo, memo } from "react";
+import { useFavorites } from "../contexts/FavoritesContext";
+import ShareButtons from "./ShareButtons";
 
-// Destination card'ı ayrı bir bileşen olarak çıkaralım
-const DestinationCard = memo(({ dest, onSelect }) => (
-  <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
-    <img
-      src={dest.image}
-      alt={dest.title}
-      className="w-full h-48 object-cover"
-      loading="lazy" // Lazy loading ekledik
-    />
-    <div className="p-4">
-      <h3 className="text-xl font-bold mb-2">{dest.title}</h3>
-      <p className="text-gray-600 line-clamp-2">{dest.description}</p>
-      <p className="text-blue-600 font-semibold my-2">{dest.price}</p>
-      <button
-        onClick={() => onSelect(dest)}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-      >
-        Detayları Gör
-      </button>
+const DestinationCard = memo(({ dest, onSelect }) => {
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const isFav = isFavorite("destinations", dest.id);
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+      <div className="relative">
+        <img
+          src={dest.image}
+          alt={dest.title}
+          className="w-full h-48 object-cover"
+          loading="lazy"
+        />
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavorite("destinations", dest);
+          }}
+          className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
+        >
+          {isFav ? "❤️" : "🤍"}
+        </button>
+      </div>
+      <div className="p-4">
+        <h3 className="text-xl font-bold mb-2">{dest.title}</h3>
+        <p className="text-gray-600 line-clamp-2">{dest.description}</p>
+        <p className="text-blue-600 font-semibold my-2">{dest.price}</p>
+        <button
+          onClick={() => onSelect(dest)}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+        >
+          Detayları Gör
+        </button>
+      </div>
     </div>
-  </div>
-));
+  );
+});
 
 function TravelList({ searchQuery }) {
   const [selectedDest, setSelectedDest] = useState(null);
@@ -103,7 +120,6 @@ function TravelList({ searchQuery }) {
     }, 2000);
   };
 
-  // Filtreleme işlemini useMemo ile optimize ettik
   const filteredDestinations = useMemo(
     () =>
       destinations.filter(
@@ -137,7 +153,6 @@ function TravelList({ searchQuery }) {
         </div>
       )}
 
-      {/* Improved Modal */}
       {selectedDest && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full p-6 relative">
@@ -152,7 +167,13 @@ function TravelList({ searchQuery }) {
               alt={selectedDest.title}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
-            <h2 className="text-2xl font-bold mb-4">{selectedDest.title}</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">{selectedDest.title}</h2>
+              <ShareButtons
+                url={window.location.origin + "/#destinations"}
+                title={`${selectedDest.title} - TravelGuide'da keşfet!`}
+              />
+            </div>
             <p className="text-gray-600 mb-4">{selectedDest.description}</p>
             <div className="mb-4">
               <h3 className="font-bold mb-2">Öne Çıkanlar:</h3>
@@ -186,5 +207,4 @@ function TravelList({ searchQuery }) {
   );
 }
 
-// Bileşeni memo ile sarmalayarak export ediyoruz
 export default memo(TravelList);

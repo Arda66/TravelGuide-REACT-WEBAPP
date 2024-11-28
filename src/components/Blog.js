@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../contexts/FavoritesContext";
 
 function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const categories = [
     { id: "all", name: "Tümü" },
@@ -88,11 +90,22 @@ function Blog() {
             key={post.id}
             className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
           >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-48 object-cover"
-            />
+            <div className="relative">
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-48 object-cover"
+              />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleFavorite("blogs", post);
+                }}
+                className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
+              >
+                {isFavorite("blogs", post.id) ? "❤️" : "🤍"}
+              </button>
+            </div>
             <div className="p-6">
               <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                 <span>{post.date}</span>
