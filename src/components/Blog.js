@@ -5,6 +5,7 @@ import { useFavorites } from "../contexts/FavoritesContext";
 function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const { toggleFavorite, isFavorite } = useFavorites();
+  const [showAll, setShowAll] = useState(false); // 'Daha Fazla Gör' durumu
 
   const categories = [
     { id: "all", name: "Tümü" },
@@ -12,6 +13,8 @@ function Blog() {
     { id: "culture", name: "Kültür Turları" },
     { id: "gastronomy", name: "Gastronomi" },
     { id: "tips", name: "Seyahat İpuçları" },
+    { id: "nature", name: "Doğa" },
+    { id: "adventure", name: "Macera" },
   ];
 
   const blogPosts = [
@@ -55,12 +58,52 @@ function Blog() {
       summary:
         "Ekonomik tatil yapmak isteyenler için püf noktaları ve öneriler...",
     },
+    {
+      id: 5,
+      title: "Karadeniz'in Saklı Cennetleri",
+      category: "nature",
+      image: "https://images.unsplash.com/photo-1547043594-4191000dc1eb",
+      date: "5 Mayıs 2024",
+      author: "Elif Öztürk",
+      summary:
+        "Karadeniz'in eşsiz doğasını ve saklı kalmış güzelliklerini keşfedin. Yaylaların serinliği, ormanların huzuru ve yerel kültürün sıcaklığı sizleri bekliyor.",
+    },
+    {
+      id: 6,
+      title: "Kapadokya'da Balon Turu Deneyimi",
+      category: "adventure",
+      image: "https://images.unsplash.com/photo-1520670604026-6c664d47bed2",
+      date: "10 Mayıs 2024",
+      author: "Ahmet Kaya",
+      summary:
+        "Kapadokya'nın büyülü atmosferinde güneşin doğuşuna tanıklık ederken balon turu yapmanın heyecanını anlatıyoruz.",
+    },
+    {
+      id: 7,
+      title: "Mardin'in Tarihi Dokusu ve Kültürü",
+      category: "culture",
+      image: "https://images.unsplash.com/photo-1600566752442-a0f2fdba5844",
+      date: "15 Mayıs 2024",
+      author: "Sevgi Kılıç",
+      summary:
+        "Taş evleri, dar sokakları ve zengin kültürel mirasıyla Mardin'i keşfedin.",
+    },
   ];
 
   const filteredPosts =
     selectedCategory === "all"
       ? blogPosts
       : blogPosts.filter((post) => post.category === selectedCategory);
+
+  const [itemsToShow, setItemsToShow] = useState(5); // 5 öğe + 1 "Daha Fazla Gör" butonu
+
+  const handleSeeMore = () => {
+    setShowAll(true);
+  };
+
+  const displayedPosts = showAll
+    ? filteredPosts
+    : filteredPosts.slice(0, itemsToShow);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -85,16 +128,21 @@ function Blog() {
 
       {/* Blog Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredPosts.map((post) => (
+        {displayedPosts.map((post) => (
           <article
             key={post.id}
             className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
           >
             <div className="relative">
               <img
-                src={post.image}
+                src={post.image + "?w=400&q=75"} // URL parametreleri ile boyut ve kalite kontrolü
                 alt={post.title}
                 className="w-full h-48 object-cover"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/400x200?text=Loading...";
+                }}
               />
               <button
                 onClick={(e) => {
@@ -123,6 +171,20 @@ function Blog() {
             </div>
           </article>
         ))}
+        {!showAll && filteredPosts.length > itemsToShow && (
+          <article
+            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center"
+            onClick={handleSeeMore}
+          >
+            <div className="p-6 text-center">
+              <div className="text-4xl mb-2">📚</div>
+              <h2 className="text-xl font-bold mb-3">Daha Fazla Gör</h2>
+              <p className="text-gray-600">
+                {filteredPosts.length - itemsToShow} blog daha var
+              </p>
+            </div>
+          </article>
+        )}
       </div>
     </div>
   );

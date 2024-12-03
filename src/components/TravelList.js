@@ -10,10 +10,14 @@ const DestinationCard = memo(({ dest, onSelect }) => {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
       <div className="relative">
         <img
-          src={dest.image}
+          src={dest.image + "?w=400&q=75"}
           alt={dest.title}
           className="w-full h-48 object-cover"
           loading="lazy"
+          onError={(e) => {
+            e.target.src =
+              "https://via.placeholder.com/400x200?text=Loading...";
+          }}
         />
         <button
           onClick={(e) => {
@@ -43,6 +47,7 @@ const DestinationCard = memo(({ dest, onSelect }) => {
 function TravelList({ searchQuery }) {
   const [selectedDest, setSelectedDest] = useState(null);
   const [reserved, setReserved] = useState(false);
+  const [showAll, setShowAll] = useState(false); // 'Daha Fazla Gör' durumu
 
   const destinations = [
     {
@@ -110,7 +115,51 @@ function TravelList({ searchQuery }) {
         "Zinciriye Medresesi",
       ],
     },
+    {
+      id: 6,
+      title: "Göbeklitepe",
+      image: "https://images.unsplash.com/photo-1515442261606-59c7b2f1e379",
+      description:
+        "Dünyanın en eski tapınağı olarak kabul edilen Göbeklitepe, tarihin sıfır noktası olarak adlandırılıyor. Arkeolojiye ilgi duyanlar için eşsiz bir deneyim sunuyor.",
+      price: "2300₺'den başlayan fiyatlarla",
+      highlights: [
+        "Tarih Öncesi Kalıntılar",
+        "Rehberli Turlar",
+        "Arkeoloji Müzesi",
+        "Yerel Mutfak Deneyimi",
+      ],
+    },
+    {
+      id: 7,
+      title: "Pamukkale",
+      image: "https://images.unsplash.com/photo-1585325701954-677ab1ec5e9a",
+      description:
+        "Bembeyaz travertenleri ve sıcak termal sularıyla ünlü Pamukkale, doğanın mucizesini gözler önüne seriyor.",
+      price: "1900₺'den başlayan fiyatlarla",
+      highlights: [
+        "Travertenler",
+        "Hierapolis Antik Kenti",
+        "Kleopatra Havuzu",
+        "Termal Oteller",
+      ],
+    },
+    {
+      id: 8,
+      title: "Nemrut Dağı",
+      image: "https://images.unsplash.com/photo-1582560478080-1a20bb05ca84",
+      description:
+        "UNESCO Dünya Mirası Listesi'nde yer alan Nemrut Dağı, dev heykelleri ve eşsiz gün doğumu manzarasıyla ziyaretçilerini büyülüyor.",
+      price: "2100₺'den başlayan fiyatlarla",
+      highlights: [
+        "Dev Heykeller",
+        "Gün Doğumu ve Batımı",
+        "Kommagene Krallığı Kalıntıları",
+        "Dağ Yürüyüşleri",
+      ],
+    },
   ];
+
+  const [itemsToShow, setItemsToShow] = useState(5); // 5 öğe + 1 "Daha Fazla Gör" butonu
 
   const handleReservation = () => {
     setReserved(true);
@@ -118,6 +167,10 @@ function TravelList({ searchQuery }) {
       setReserved(false);
       setSelectedDest(null);
     }, 2000);
+  };
+
+  const handleSeeMore = () => {
+    setShowAll(true);
   };
 
   const filteredDestinations = useMemo(
@@ -132,6 +185,17 @@ function TravelList({ searchQuery }) {
     [searchQuery]
   );
 
+  const displayedDestinations = useMemo(() => {
+    const filtered = destinations.filter(
+      (dest) =>
+        dest.title.toLowerCase().includes(searchQuery?.toLowerCase() || "") ||
+        dest.description
+          .toLowerCase()
+          .includes(searchQuery?.toLowerCase() || "")
+    );
+    return showAll ? filtered : filtered.slice(0, itemsToShow);
+  }, [searchQuery, showAll, itemsToShow]);
+
   return (
     <>
       {filteredDestinations.length === 0 ? (
@@ -143,13 +207,27 @@ function TravelList({ searchQuery }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDestinations.map((dest) => (
+          {displayedDestinations.map((dest) => (
             <DestinationCard
               key={dest.id}
               dest={dest}
               onSelect={setSelectedDest}
             />
           ))}
+          {!showAll && destinations.length > itemsToShow && (
+            <div
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105 flex items-center justify-center cursor-pointer"
+              onClick={handleSeeMore}
+            >
+              <div className="p-4 text-center">
+                <div className="text-4xl mb-2">🌟</div>
+                <h3 className="text-xl font-bold mb-2">Daha Fazla Gör</h3>
+                <p className="text-gray-600">
+                  {destinations.length - itemsToShow} destinasyon daha var
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -163,9 +241,14 @@ function TravelList({ searchQuery }) {
               <span className="text-gray-600">×</span>
             </button>
             <img
-              src={selectedDest.image}
+              src={selectedDest.image + "?w=800&q=80"}
               alt={selectedDest.title}
               className="w-full h-64 object-cover rounded-lg mb-4"
+              loading="lazy"
+              onError={(e) => {
+                e.target.src =
+                  "https://via.placeholder.com/800x400?text=Loading...";
+              }}
             />
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-2xl font-bold">{selectedDest.title}</h2>
@@ -201,6 +284,16 @@ function TravelList({ searchQuery }) {
               </div>
             )}
           </div>
+        </div>
+      )}
+      {!showAll && displayedDestinations.length < destinations.length && (
+        <div className="text-center mt-8">
+          <button
+            onClick={handleSeeMore}
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            Daha Fazla Gör
+          </button>
         </div>
       )}
     </>

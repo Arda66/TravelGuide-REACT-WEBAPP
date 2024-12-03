@@ -357,6 +357,11 @@ function BlogPost() {
           src={post.image}
           alt={post.title}
           className="w-full h-[500px] object-cover"
+          loading="lazy"
+          onError={(e) => {
+            e.target.src =
+              "https://via.placeholder.com/800x500?text=Loading..."; // fallback image
+          }}
         />
 
         <div className="p-8">

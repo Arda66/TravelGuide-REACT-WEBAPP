@@ -39,7 +39,7 @@ function App() {
                   className="relative h-[80vh] bg-cover bg-center"
                   style={{
                     backgroundImage:
-                      'url("https://images.unsplash.com/photo-1499856871958-5b9627545d1a")',
+                      'url("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=80")',
                   }}
                 >
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
