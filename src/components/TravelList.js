@@ -286,16 +286,6 @@ function TravelList({ searchQuery }) {
           </div>
         </div>
       )}
-      {!showAll && displayedDestinations.length < destinations.length && (
-        <div className="text-center mt-8">
-          <button
-            onClick={handleSeeMore}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
-          >
-            Daha Fazla Gör
-          </button>
-        </div>
-      )}
     </>
   );
 }
