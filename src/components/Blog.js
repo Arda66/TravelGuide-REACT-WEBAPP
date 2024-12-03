@@ -88,6 +88,34 @@ function Blog() {
       summary:
         "Taş evleri, dar sokakları ve zengin kültürel mirasıyla Mardin'i keşfedin.",
     },
+    {
+      id: 8,
+      title: "Bodrum’un Gizli Koyları",
+      category: "summer",
+      image: "https://images.unsplash.com/photo-1517620428470-b1ab2127c3c5",
+      date: "20 Mayıs 2024",
+      author: "Ayşe Yılmaz",
+      summary: "Bodrum'un kalabalıktan uzak, huzurlu koylarını keşfedin.",
+    },
+    {
+      id: 9,
+      title: "Kars’ta Doğu Ekspresi ile Masalsı Yolculuk",
+      category: "adventure",
+      image: "https://images.unsplash.com/photo-1516967124798-4b494d8f8b35",
+      date: "25 Mayıs 2024",
+      author: "Mehmet Demir",
+      summary: "Doğu Ekspresi ile Kars'ın büyülü atmosferini deneyimleyin.",
+    },
+    {
+      id: 10,
+      title: "İstanbul’un Tarihi Semtleri ve Sokak Lezzetleri",
+      category: "culture",
+      image: "https://images.unsplash.com/photo-1566438485761-57f7cf6c8e47",
+      date: "30 Mayıs 2024",
+      author: "Zeynep Kaya",
+      summary:
+        "Tarihi yarımada ve sokak lezzetlerinin izinde unutulmaz bir gezi.",
+    },
   ];
 
   const filteredPosts =
