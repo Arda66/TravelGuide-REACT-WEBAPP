@@ -23,6 +23,45 @@ function App() {
     });
   };
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Ayşe Yılmaz",
+      role: "Gezgin & Fotoğrafçı",
+      image:
+        "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=100&w=400&auto=format&fit=crop",
+      quote:
+        "Kapadokya turu muhteşemdi! Organizasyon kusursuzdu ve rehberimiz çok bilgiliydi. Kesinlikle tekrar tercih edeceğim.",
+      rating: 5,
+      destination: "Kapadokya Turu",
+      date: "Mart 2024",
+    },
+    {
+      id: 2,
+      name: "Mehmet Demir",
+      role: "İş İnsanı",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=100&w=400&auto=format&fit=crop",
+      quote:
+        "Ailece çıktığımız Ege turu beklentilerimizin çok üzerindeydi. Çocuklar için de çok keyifli aktiviteler vardı.",
+      rating: 5,
+      destination: "Ege Turu",
+      date: "Nisan 2024",
+    },
+    {
+      id: 3,
+      name: "Zeynep Kaya",
+      role: "Yazar",
+      image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=100&w=400&auto=format&fit=crop",
+      quote:
+        "Doğu Ekspresi yolculuğu hayatımın en güzel deneyimlerinden biriydi. Her şey düşünülmüştü, mükemmel bir organizasyondu.",
+      rating: 5,
+      destination: "Doğu Ekspresi Turu",
+      date: "Şubat 2024",
+    },
+  ];
+
   return (
     <FavoritesProvider>
       <Router>
@@ -75,6 +114,59 @@ function App() {
                   {/* Blog Section */}
                   <section id="blog">
                     <Blog />
+                  </section>
+
+                  {/* Testimonials Section */}
+                  <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+                    <div className="container mx-auto px-4">
+                      <h2 className="text-3xl font-bold text-center mb-4">
+                        Mutlu Müşterilerimiz
+                      </h2>
+                      <p className="text-gray-600 text-center mb-12">
+                        Unutulmaz seyahat deneyimleri yaşayan misafirlerimizin
+                        yorumları
+                      </p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {testimonials.map((testimonial) => (
+                          <div
+                            key={testimonial.id}
+                            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
+                          >
+                            <div className="flex items-center mb-4">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                className="w-16 h-16 rounded-full object-cover shadow-lg"
+                                loading="lazy"
+                              />
+                              <div className="ml-4">
+                                <h3 className="font-bold">
+                                  {testimonial.name}
+                                </h3>
+                                <p className="text-gray-600 text-sm">
+                                  {testimonial.role}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="mb-4">
+                              {[...Array(testimonial.rating)].map((_, i) => (
+                                <span key={i} className="text-yellow-400">
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                            <blockquote className="text-gray-700 mb-4 italic">
+                              "{testimonial.quote}"
+                            </blockquote>
+                            <div className="text-sm text-gray-600">
+                              <p>{testimonial.destination}</p>
+                              <p>{testimonial.date}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </section>
 
                   {/* Why Choose Us */}
