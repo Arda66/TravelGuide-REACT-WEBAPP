@@ -7,8 +7,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BlogPost from "./components/BlogPost";
 import Favorites from "./components/Favorites"; // Favorites bileşenini import et
 import { FavoritesProvider } from "./contexts/FavoritesContext"; // FavoritesProvider'ı import et
+import "./i18n";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showOfferDetails, setShowOfferDetails] = useState(null);
 
@@ -27,38 +30,35 @@ function App() {
     {
       id: 1,
       name: "Ayşe Yılmaz",
-      role: "Gezgin & Fotoğrafçı",
+      role: t("testimonials.role1"),
       image:
         "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=100&w=400&auto=format&fit=crop",
-      quote:
-        "Kapadokya turu muhteşemdi! Organizasyon kusursuzdu ve rehberimiz çok bilgiliydi. Kesinlikle tekrar tercih edeceğim.",
+      quote: t("testimonials.quote1"),
       rating: 5,
-      destination: "Kapadokya Turu",
-      date: "Mart 2024",
+      destination: t("testimonials.dest1"),
+      date: t("testimonials.date1"),
     },
     {
       id: 2,
       name: "Mehmet Demir",
-      role: "İş İnsanı",
+      role: t("testimonials.role2"),
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=100&w=400&auto=format&fit=crop",
-      quote:
-        "Ailece çıktığımız Ege turu beklentilerimizin çok üzerindeydi. Çocuklar için de çok keyifli aktiviteler vardı.",
+      quote: t("testimonials.quote2"),
       rating: 5,
-      destination: "Ege Turu",
-      date: "Nisan 2024",
+      destination: t("testimonials.dest2"),
+      date: t("testimonials.date2"),
     },
     {
       id: 3,
       name: "Zeynep Kaya",
-      role: "Yazar",
+      role: t("testimonials.role3"),
       image:
         "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=100&w=400&auto=format&fit=crop",
-      quote:
-        "Doğu Ekspresi yolculuğu hayatımın en güzel deneyimlerinden biriydi. Her şey düşünülmüştü, mükemmel bir organizasyondu.",
+      quote: t("testimonials.quote3"),
       rating: 5,
-      destination: "Doğu Ekspresi Turu",
-      date: "Şubat 2024",
+      destination: t("testimonials.dest3"),
+      date: t("testimonials.date3"),
     },
   ];
 
@@ -84,16 +84,14 @@ function App() {
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="text-center text-white">
                       <h1 className="text-5xl font-bold mb-4">
-                        Hayalinizdeki Tatili Keşfedin
+                        {t("discover")}
                       </h1>
-                      <p className="text-xl mb-8">
-                        En güzel destinasyonlar, en uygun fiyatlarla
-                      </p>
+                      <p className="text-xl mb-8">{t("bestDestinations")}</p>
                       <button
                         onClick={scrollToDestinations}
                         className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors"
                       >
-                        Hemen Keşfet
+                        {t("exploreNow")}
                       </button>
                     </div>
                   </div>

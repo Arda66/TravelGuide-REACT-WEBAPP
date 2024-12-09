@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFavorites } from "../contexts/FavoritesContext";
+import { useTranslation } from "react-i18next";
 
 function Header({ onSearch }) {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -9,6 +10,21 @@ function Header({ onSearch }) {
   const totalFavorites = favorites.blogs.length + favorites.destinations.length;
   const location = useLocation();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+
+  const languages = [
+    {
+      code: "en",
+      name: "English",
+      flag: <img src="/flags/gb.svg" alt="English" className="w-5 h-5" />,
+    },
+    {
+      code: "tr",
+      name: "Türkçe",
+      flag: <img src="/flags/tr.svg" alt="Türkçe" className="w-5 h-5" />,
+    },
+  ];
 
   const handleNavigation = (link) => {
     if (location.pathname !== "/") {
@@ -34,6 +50,10 @@ function Header({ onSearch }) {
     onSearch(value);
   };
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <header className="bg-blue-600 text-white py-4 sticky top-0 z-40">
       <nav className="container mx-auto px-4">
@@ -43,7 +63,7 @@ function Header({ onSearch }) {
               to="/"
               className="text-2xl md:text-3xl font-bold tracking-tight"
             >
-              TravelGuide
+              {t("welcome")}
             </Link>
             <button
               className="md:hidden p-2 hover:bg-blue-500 rounded"
@@ -71,7 +91,7 @@ function Header({ onSearch }) {
                 onClick={() => handleNavigation("home")}
                 className="hover:text-blue-200 cursor-pointer"
               >
-                Ana Sayfa
+                {t("home")}
               </button>
             </li>
             <li>
@@ -79,7 +99,7 @@ function Header({ onSearch }) {
                 onClick={() => handleNavigation("destinations")}
                 className="hover:text-blue-200 cursor-pointer"
               >
-                Destinasyonlar
+                {t("destinations")}
               </button>
             </li>
             <li>
@@ -87,7 +107,7 @@ function Header({ onSearch }) {
                 onClick={() => handleNavigation("blog")}
                 className="hover:text-blue-200 cursor-pointer"
               >
-                Blog
+                {t("blog")}
               </button>
             </li>
             <li className="hidden md:block">
@@ -118,13 +138,53 @@ function Header({ onSearch }) {
                 to="/favorites"
                 className="hover:text-blue-200 cursor-pointer flex items-center gap-2"
               >
-                Favoriler
+                {t("favorites")}
                 {totalFavorites > 0 && (
                   <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                     {totalFavorites}
                   </span>
                 )}
               </Link>
+            </li>
+            <li className="relative">
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center gap-2 hover:text-blue-200 py-2"
+              >
+                {languages.find((lang) => lang.code === i18n.language)?.flag ||
+                  "🌐"}
+                <span>{i18n.language.toUpperCase()}</span>
+                <span
+                  className={`transition-transform duration-200 ${
+                    isLangMenuOpen ? "rotate-180" : ""
+                  }`}
+                >
+                  ▼
+                </span>
+              </button>
+
+              {isLangMenuOpen && (
+                <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg overflow-hidden min-w-[120px]">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        changeLanguage(lang.code);
+                        setIsLangMenuOpen(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left flex items-center gap-2 hover:bg-gray-100
+                        ${
+                          i18n.language === lang.code
+                            ? "text-blue-600"
+                            : "text-gray-700"
+                        }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </li>
           </ul>
         </div>
