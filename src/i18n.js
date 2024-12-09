@@ -199,6 +199,84 @@ const resources = {
           seeMore: "See More Posts",
           remaining: "more posts available",
           readMore: "Read More",
+          post1: {
+            title: "2024 Summer's Top 5 Beaches",
+            category: "summer",
+            date: "April 15, 2024",
+            author: "Ayşe Yılmaz",
+            summary:
+              "Discover Turkey's most beautiful beaches you must visit this summer...",
+          },
+          post2: {
+            title: "Best Coffee Shops of 2024",
+            category: "lifestyle",
+            date: "April 20, 2024",
+            author: "Mehmet Demir",
+            summary: "Explore Istanbul's best coffee spots...",
+          },
+          post3: {
+            title: "Digital Minimalism: Simplifying Modern Life",
+            category: "lifestyle",
+            date: "April 25, 2024",
+            author: "Zeynep Kaya",
+            summary: "Tips for minimalist living in the digital age...",
+          },
+          post4: {
+            title: "Budget Travel Tips in 2024",
+            category: "tips",
+            date: "April 8, 2024",
+            author: "Can Yıldız",
+            summary:
+              "Tips and tricks for budget travelers looking to maximize their travel experience...",
+          },
+          post5: {
+            title: "Hidden Gems of Black Sea",
+            category: "nature",
+            date: "May 5, 2024",
+            author: "Elif Öztürk",
+            summary:
+              "Explore the undiscovered beauty of Black Sea region's plateaus, forests and unique culture...",
+          },
+          post6: {
+            title: "Hot Air Balloon Experience in Cappadocia",
+            category: "adventure",
+            date: "May 10, 2024",
+            author: "Ahmet Kaya",
+            summary:
+              "Experience the magical sunrise over Cappadocia's fairy chimneys from a hot air balloon...",
+          },
+          post7: {
+            title: "Mardin: A Historical Journey",
+            category: "culture",
+            date: "May 15, 2024",
+            author: "Sevgi Kılıç",
+            summary:
+              "Discover the rich history and architecture of Mardin's stone houses and ancient streets...",
+          },
+          post8: {
+            title: "Secret Beaches of Bodrum",
+            category: "summer",
+            date: "May 20, 2024",
+            author: "Ayşe Yılmaz",
+            summary:
+              "Escape the crowds and discover Bodrum's hidden coves and peaceful beaches...",
+          },
+          post9: {
+            title: "Eastern Express Adventure",
+            category: "adventure",
+            date: "May 25, 2024",
+            author: "Mehmet Demir",
+            summary:
+              "A magical journey through snowy landscapes on the Eastern Express...",
+          },
+          post10: {
+            title: "Istanbul's Historic Districts and Street Food",
+            category: "culture",
+            date: "May 30, 2024",
+            author: "Zeynep Kaya",
+            summary:
+              "Explore the historic peninsula while tasting Istanbul's famous street food...",
+          },
         },
       },
       whyChooseUs: {
@@ -471,6 +549,84 @@ const resources = {
           seeMore: "Daha Fazla Göster",
           remaining: "blog daha var",
           readMore: "Devamını Oku",
+          post1: {
+            title: "2024 Yazının En Popüler 5 Plajı",
+            category: "summer",
+            date: "15 Nisan 2024",
+            author: "Ayşe Yılmaz",
+            summary:
+              "Bu yaz mutlaka ziyaret etmeniz gereken Türkiye'nin en güzel plajlarını sizler için derledik...",
+          },
+          post2: {
+            title: "2024'ün En İyi Kahve Mekanları",
+            category: "lifestyle",
+            date: "20 Nisan 2024",
+            author: "Mehmet Demir",
+            summary: "İstanbul'un en iyi kahve duraklarını keşfedin...",
+          },
+          post3: {
+            title: "Dijital Minimalizm: Modern Yaşamda Sadeleşme",
+            category: "lifestyle",
+            date: "25 Nisan 2024",
+            author: "Zeynep Kaya",
+            summary: "Dijital çağda minimalist yaşam için ipuçları...",
+          },
+          post4: {
+            title: "Minimum Bütçeyle Maximum Tatil",
+            category: "tips",
+            date: "8 Nisan 2024",
+            author: "Can Yıldız",
+            summary:
+              "Ekonomik tatil yapmak isteyenler için püf noktaları ve öneriler...",
+          },
+          post5: {
+            title: "Karadeniz'in Saklı Cennetleri",
+            category: "nature",
+            date: "5 Mayıs 2024",
+            author: "Elif Öztürk",
+            summary:
+              "Karadeniz'in eşsiz doğasını ve saklı kalmış güzelliklerini keşfedin...",
+          },
+          post6: {
+            title: "Kapadokya'da Balon Turu Deneyimi",
+            category: "adventure",
+            date: "10 Mayıs 2024",
+            author: "Ahmet Kaya",
+            summary:
+              "Kapadokya'nın peri bacaları üzerinde gün doğumunu izlemenin büyüleyici deneyimi...",
+          },
+          post7: {
+            title: "Mardin'in Tarihi Dokusu ve Kültürü",
+            category: "culture",
+            date: "15 Mayıs 2024",
+            author: "Sevgi Kılıç",
+            summary:
+              "Taş evleri, dar sokakları ve zengin kültürel mirasıyla Mardin'i keşfedin...",
+          },
+          post8: {
+            title: "Bodrum'un Gizli Koyları",
+            category: "summer",
+            date: "20 Mayıs 2024",
+            author: "Ayşe Yılmaz",
+            summary:
+              "Bodrum'un kalabalıktan uzak, huzurlu koylarını keşfedin...",
+          },
+          post9: {
+            title: "Kars'ta Doğu Ekspresi ile Masalsı Yolculuk",
+            category: "adventure",
+            date: "25 Mayıs 2024",
+            author: "Mehmet Demir",
+            summary:
+              "Doğu Ekspresi ile Kars'ın büyülü atmosferini deneyimleyin...",
+          },
+          post10: {
+            title: "İstanbul'un Tarihi Semtleri ve Sokak Lezzetleri",
+            category: "culture",
+            date: "30 Mayıs 2024",
+            author: "Zeynep Kaya",
+            summary:
+              "Tarihi yarımada ve sokak lezzetlerinin izinde unutulmaz bir gezi...",
+          },
         },
       },
       whyChooseUs: {

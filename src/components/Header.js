@@ -52,7 +52,14 @@ function Header({ onSearch }) {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    setIsLangMenuOpen(false); // Dropdown'ı kapat
+    // Dil değişikliğini localStorage'a kaydet
+    localStorage.setItem("i18nextLng", lng);
   };
+
+  // Mevcut dili al
+  const currentLanguage =
+    i18n.language || window.localStorage.getItem("i18nextLng") || "en";
 
   return (
     <header className="bg-blue-600 text-white py-4 sticky top-0 z-40">
@@ -154,17 +161,17 @@ function Header({ onSearch }) {
                 <span>
                   <img
                     src={
-                      languages.find((lang) => lang.code === i18n.language)
+                      languages.find((lang) => lang.code === currentLanguage)
                         ?.flag
                     }
                     alt={
-                      languages.find((lang) => lang.code === i18n.language)
+                      languages.find((lang) => lang.code === currentLanguage)
                         ?.name
                     }
                     className="w-5 h-5 inline-block"
                   />
                 </span>
-                <span>{i18n.language.toUpperCase()}</span>
+                <span>{currentLanguage.toUpperCase()}</span>
                 <span
                   className={`transition-transform duration-200 ${
                     isLangMenuOpen ? "rotate-180" : ""

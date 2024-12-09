@@ -1,144 +1,73 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../contexts/FavoritesContext";
+import { useTranslation } from "react-i18next";
 
 function Blog() {
+  const { t, i18n } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const { toggleFavorite, isFavorite } = useFavorites();
-  const [showAll, setShowAll] = useState(false); // 'Daha Fazla Gör' durumu
+  const [showAll, setShowAll] = useState(false);
+  const [itemsToShow, setItemsToShow] = useState(5);
 
   const categories = [
-    { id: "all", name: "Tümü" },
-    { id: "summer", name: "Yaz Tatili" },
-    { id: "culture", name: "Kültür Turları" },
-    { id: "gastronomy", name: "Gastronomi" },
-    { id: "tips", name: "Seyahat İpuçları" },
-    { id: "nature", name: "Doğa" },
-    { id: "adventure", name: "Macera" },
+    { id: "all", name: t("blogContent.categories.all") },
+    { id: "summer", name: t("blogContent.categories.summer") },
+    { id: "culture", name: t("blogContent.categories.culture") },
+    { id: "gastronomy", name: t("blogContent.categories.gastronomy") },
+    { id: "tips", name: t("blogContent.categories.tips") },
+    { id: "nature", name: t("blogContent.categories.nature") },
+    { id: "adventure", name: t("blogContent.categories.adventure") },
   ];
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "2024 Yazının En Popüler 5 Plajı",
-      category: "summer",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-      date: "15 Nisan 2024",
-      author: "Ayşe Yılmaz",
-      summary:
-        "Bu yaz mutlaka ziyaret etmeniz gereken Türkiye'nin en güzel plajlarını sizler için derledik...",
-    },
-    {
-      id: 2,
-      title: "Ege'nin Antik Kentleri: Tam Gün Rotası",
-      category: "culture",
-      image: "https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8",
-      date: "12 Nisan 2024",
-      author: "Mehmet Demir",
-      summary:
-        "Efes'ten Bergama'ya, Ege'nin en etkileyici antik kentlerini kapsayan muhteşem bir rota...",
-    },
-    {
-      id: 3,
-      title: "Sokak Lezzetleri Rehberi: İstanbul",
-      category: "gastronomy",
-      image: "https://images.unsplash.com/photo-1528909760809-0251be5d2111",
-      date: "10 Nisan 2024",
-      author: "Zeynep Kaya",
-      summary:
-        "İstanbul'un en lezzetli sokak yemeklerini tadabileceğiniz mekanlar ve ipuçları...",
-    },
-    {
-      id: 4,
-      title: "Minimum Bütçeyle Maximum Tatil",
-      category: "tips",
-      image: "https://images.unsplash.com/photo-1508672019048-805c876b67e2",
-      date: "8 Nisan 2024",
-      author: "Can Yıldız",
-      summary:
-        "Ekonomik tatil yapmak isteyenler için püf noktaları ve öneriler...",
-    },
-    {
-      id: 5,
-      title: "Karadeniz'in Saklı Cennetleri",
-      category: "nature",
-      image: "https://images.unsplash.com/photo-1599424102613-e9e1ecf396b7",
-      date: "5 Mayıs 2024",
-      author: "Elif Öztürk",
-      summary:
-        "Karadeniz'in eşsiz doğasını ve saklı kalmış güzelliklerini keşfedin. Yaylaların serinliği, ormanların huzuru ve yerel kültürün sıcaklığı sizleri bekliyor.",
-    },
-    {
-      id: 6,
-      title: "Kapadokya'da Balon Turu Deneyimi",
-      category: "adventure",
-      image: "https://images.unsplash.com/photo-1716594993172-b895213512ed",
-      date: "10 Mayıs 2024",
-      author: "Ahmet Kaya",
-      summary:
-        "Kapadokya'nın büyülü atmosferinde güneşin doğuşuna tanıklık ederken balon turu yapmanın heyecanını anlatıyoruz.",
-    },
-    {
-      id: 7,
-      title: "Mardin'in Tarihi Dokusu ve Kültürü",
-      category: "culture",
-      image: "https://images.unsplash.com/photo-1710835643934-f9aaf8b2ccc9",
-      date: "15 Mayıs 2024",
-      author: "Sevgi Kılıç",
-      summary:
-        "Taş evleri, dar sokakları ve zengin kültürel mirasıyla Mardin'i keşfedin.",
-    },
-    {
-      id: 8,
-      title: "Bodrum’un Gizli Koyları",
-      category: "summer",
-      image: "https://images.unsplash.com/photo-1591078314943-85c674b3789b",
-      date: "20 Mayıs 2024",
-      author: "Ayşe Yılmaz",
-      summary: "Bodrum'un kalabalıktan uzak, huzurlu koylarını keşfedin.",
-    },
-    {
-      id: 9,
-      title: "Kars’ta Doğu Ekspresi ile Masalsı Yolculuk",
-      category: "adventure",
-      image: "https://images.unsplash.com/photo-1509853940202-99b010d7ebb7",
-      date: "25 Mayıs 2024",
-      author: "Mehmet Demir",
-      summary: "Doğu Ekspresi ile Kars'ın büyülü atmosferini deneyimleyin.",
-    },
-    {
-      id: 10,
-      title: "İstanbul’un Tarihi Semtleri ve Sokak Lezzetleri",
-      category: "culture",
-      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
-      date: "30 Mayıs 2024",
-      author: "Zeynep Kaya",
-      summary:
-        "Tarihi yarımada ve sokak lezzetlerinin izinde unutulmaz bir gezi.",
-    },
-  ];
-
-  const filteredPosts =
-    selectedCategory === "all"
-      ? blogPosts
-      : blogPosts.filter((post) => post.category === selectedCategory);
-
-  const [itemsToShow, setItemsToShow] = useState(5); // 5 öğe + 1 "Daha Fazla Gör" butonu
-
-  const handleSeeMore = () => {
-    setShowAll(true);
+  const getBlogImage = (id) => {
+    const images = {
+      1: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+      2: "https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8",
+      3: "https://images.unsplash.com/photo-1528909760809-0251be5d2111",
+      4: "https://images.unsplash.com/photo-1508672019048-805c876b67e2",
+      5: "https://images.unsplash.com/photo-1599424102613-e9e1ecf396b7",
+      6: "https://images.unsplash.com/photo-1716594993172-b895213512ed",
+      7: "https://images.unsplash.com/photo-1710835643934-f9aaf8b2ccc9",
+      8: "https://images.unsplash.com/photo-1591078314943-85c674b3789b",
+      9: "https://images.unsplash.com/photo-1509853940202-99b010d7ebb7",
+      10: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
+    };
+    return images[id];
   };
+
+  const blogPosts = useMemo(() => {
+    const postKeys = Array.from({ length: 10 }, (_, i) => i + 1);
+
+    return postKeys.map((id) => ({
+      id,
+      title: t(`blogContent.posts.post${id}.title`),
+      category: t(`blogContent.posts.post${id}.category`),
+      image: getBlogImage(id),
+      date: t(`blogContent.posts.post${id}.date`),
+      author: t(`blogContent.posts.post${id}.author`),
+      summary: t(`blogContent.posts.post${id}.summary`),
+    }));
+  }, [t, i18n.language]);
+
+  const filteredPosts = useMemo(
+    () =>
+      selectedCategory === "all"
+        ? blogPosts
+        : blogPosts.filter((post) => post.category === selectedCategory),
+    [selectedCategory, blogPosts, i18n.language]
+  );
 
   const displayedPosts = showAll
     ? filteredPosts
     : filteredPosts.slice(0, itemsToShow);
 
+  const handleSeeMore = () => {
+    setShowAll(true);
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Bu başlığı kaldırın çünkü App.js'de zaten var */}
-      {/* <h1 className="text-4xl font-bold text-center mb-12">Seyahat Blogu</h1> */}
-
-      {/* Categories */}
       <div className="flex flex-wrap gap-4 justify-center mb-8">
         {categories.map((category) => (
           <button
@@ -155,7 +84,6 @@ function Blog() {
         ))}
       </div>
 
-      {/* Blog Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {displayedPosts.map((post) => (
           <article
@@ -195,7 +123,7 @@ function Blog() {
                 to={`/blog/${post.id}`}
                 className="text-blue-600 hover:text-blue-800 font-semibold"
               >
-                Devamını Oku →
+                {t("blogContent.posts.readMore")}
               </Link>
             </div>
           </article>
@@ -207,9 +135,12 @@ function Blog() {
           >
             <div className="p-6 text-center">
               <div className="text-4xl mb-2">📚</div>
-              <h2 className="text-xl font-bold mb-3">Daha Fazla Gör</h2>
+              <h2 className="text-xl font-bold mb-3">
+                {t("blogContent.posts.seeMore")}
+              </h2>
               <p className="text-gray-600">
-                {filteredPosts.length - itemsToShow} blog daha var
+                {filteredPosts.length - itemsToShow}{" "}
+                {t("blogContent.posts.remaining")}
               </p>
             </div>
           </article>
