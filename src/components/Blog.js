@@ -62,7 +62,7 @@ function Blog() {
       id: 5,
       title: "Karadeniz'in Saklı Cennetleri",
       category: "nature",
-      image: "https://images.unsplash.com/photo-1547043594-4191000dc1eb",
+      image: "https://images.unsplash.com/photo-1599424102613-e9e1ecf396b7",
       date: "5 Mayıs 2024",
       author: "Elif Öztürk",
       summary:
@@ -72,7 +72,7 @@ function Blog() {
       id: 6,
       title: "Kapadokya'da Balon Turu Deneyimi",
       category: "adventure",
-      image: "https://images.unsplash.com/photo-1520670604026-6c664d47bed2",
+      image: "https://images.unsplash.com/photo-1716594993172-b895213512ed",
       date: "10 Mayıs 2024",
       author: "Ahmet Kaya",
       summary:
@@ -82,7 +82,7 @@ function Blog() {
       id: 7,
       title: "Mardin'in Tarihi Dokusu ve Kültürü",
       category: "culture",
-      image: "https://images.unsplash.com/photo-1600566752442-a0f2fdba5844",
+      image: "https://images.unsplash.com/photo-1710835643934-f9aaf8b2ccc9",
       date: "15 Mayıs 2024",
       author: "Sevgi Kılıç",
       summary:
@@ -92,7 +92,7 @@ function Blog() {
       id: 8,
       title: "Bodrum’un Gizli Koyları",
       category: "summer",
-      image: "https://images.unsplash.com/photo-1517620428470-b1ab2127c3c5",
+      image: "https://images.unsplash.com/photo-1591078314943-85c674b3789b",
       date: "20 Mayıs 2024",
       author: "Ayşe Yılmaz",
       summary: "Bodrum'un kalabalıktan uzak, huzurlu koylarını keşfedin.",
@@ -101,7 +101,7 @@ function Blog() {
       id: 9,
       title: "Kars’ta Doğu Ekspresi ile Masalsı Yolculuk",
       category: "adventure",
-      image: "https://images.unsplash.com/photo-1516967124798-4b494d8f8b35",
+      image: "https://images.unsplash.com/photo-1509853940202-99b010d7ebb7",
       date: "25 Mayıs 2024",
       author: "Mehmet Demir",
       summary: "Doğu Ekspresi ile Kars'ın büyülü atmosferini deneyimleyin.",
@@ -110,7 +110,7 @@ function Blog() {
       id: 10,
       title: "İstanbul’un Tarihi Semtleri ve Sokak Lezzetleri",
       category: "culture",
-      image: "https://images.unsplash.com/photo-1566438485761-57f7cf6c8e47",
+      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
       date: "30 Mayıs 2024",
       author: "Zeynep Kaya",
       summary:

@@ -99,7 +99,90 @@ const resources = {
             "Cave Hotels",
           ],
         },
-        // ... other destinations
+        pamukkale: {
+          title: "Pamukkale",
+          description:
+            "Famous for its white travertine terraces and ancient ruins, Pamukkale offers a unique combination of natural and historical beauty.",
+          price: "Starting from $80",
+          highlights: [
+            "Travertine Terraces",
+            "Ancient Hierapolis",
+            "Cleopatra's Pool",
+            "Thermal Springs",
+          ],
+        },
+        ephesus: {
+          title: "Ephesus",
+          description:
+            "One of the best-preserved ancient cities in the Mediterranean, Ephesus showcases remarkable Greco-Roman architecture and history.",
+          price: "Starting from $90",
+          highlights: [
+            "Library of Celsus",
+            "Temple of Hadrian",
+            "Great Theater",
+            "House of Virgin Mary",
+          ],
+        },
+        istanbul: {
+          title: "Istanbul",
+          description:
+            "Where East meets West, Istanbul offers a rich blend of history, culture, and modern life with its iconic landmarks and vibrant atmosphere.",
+          price: "Starting from $120",
+          highlights: [
+            "Hagia Sophia",
+            "Blue Mosque",
+            "Grand Bazaar",
+            "Bosphorus Tour",
+          ],
+        },
+        antalya: {
+          title: "Antalya",
+          description:
+            "With its turquoise waters, ancient cities, and magnificent beaches, Antalya, the pearl of the Mediterranean, is ideal for those seeking both history and beach holidays.",
+          price: "Starting from $90",
+          highlights: [
+            "Kaleiçi Old Town",
+            "Düden Waterfalls",
+            "Konyaaltı Beach",
+            "Aspendos Ancient Theater",
+          ],
+        },
+        mardin: {
+          title: "Mardin",
+          description:
+            "Known as the capital of stone craftsmanship, Mardin takes you on a journey through time with its historical texture, traditional architecture, and unique Mesopotamian landscape.",
+          price: "Starting from $85",
+          highlights: [
+            "Mardin Castle",
+            "Deyrulzafaran Monastery",
+            "Old Bazaar",
+            "Zinciriye Madrasah",
+          ],
+        },
+        gobekli: {
+          title: "Göbeklitepe",
+          description:
+            "Considered the world's oldest temple, Göbeklitepe is called the zero point of history. It offers a unique experience for those interested in archaeology.",
+          price: "Starting from $95",
+          highlights: [
+            "Prehistoric Ruins",
+            "Guided Tours",
+            "Archaeological Museum",
+            "Local Cuisine Experience",
+          ],
+        },
+        nemrut: {
+          title: "Mount Nemrut",
+          description:
+            "Listed as a UNESCO World Heritage site, Mount Nemrut captivates visitors with its giant statues and unique sunrise view.",
+          price: "Starting from $110",
+          highlights: [
+            "Giant Statues",
+            "Sunrise and Sunset Views",
+            "Commagene Kingdom Ruins",
+            "Mountain Hiking",
+          ],
+        },
       },
       blogContent: {
         title: "Travel Blog",
@@ -288,7 +371,90 @@ const resources = {
             "Kaya Oteller",
           ],
         },
-        // ... other destinations
+        pamukkale: {
+          title: "Pamukkale",
+          description:
+            "Beyaz traverten terasları ve antik kalıntılarıyla ünlü Pamukkale, doğal ve tarihi güzelliklerin eşsiz bir birleşimini sunuyor.",
+          price: "1600₺'den başlayan fiyatlarla",
+          highlights: [
+            "Traverten Terasları",
+            "Antik Hierapolis",
+            "Kleopatra Havuzu",
+            "Termal Kaynaklar",
+          ],
+        },
+        ephesus: {
+          title: "Efes",
+          description:
+            "Akdeniz'in en iyi korunmuş antik kentlerinden biri olan Efes, etkileyici Greco-Romen mimarisi ve tarihiyle göz kamaştırıyor.",
+          price: "1800₺'den başlayan fiyatlarla",
+          highlights: [
+            "Celsus Kütüphanesi",
+            "Hadrian Tapınağı",
+            "Büyük Tiyatro",
+            "Meryem Ana Evi",
+          ],
+        },
+        istanbul: {
+          title: "İstanbul",
+          description:
+            "Doğu ile Batı'nın buluştuğu İstanbul, ikonik yapıları ve canlı atmosferiyle tarih, kültür ve modern yaşamın zengin bir karışımını sunuyor.",
+          price: "2400₺'den başlayan fiyatlarla",
+          highlights: [
+            "Ayasofya",
+            "Sultan Ahmet Camii",
+            "Kapalı Çarşı",
+            "Boğaz Turu",
+          ],
+        },
+        antalya: {
+          title: "Antalya",
+          description:
+            "Turkuaz suları, antik kentleri ve muhteşem plajlarıyla Akdeniz'in incisi Antalya, hem tarih hem deniz tatili arayanlar için ideal.",
+          price: "1800₺'den başlayan fiyatlarla",
+          highlights: [
+            "Kaleiçi",
+            "Düden Şelalesi",
+            "Konyaaltı Plajı",
+            "Aspendos Antik Tiyatrosu",
+          ],
+        },
+        mardin: {
+          title: "Mardin",
+          description:
+            "Taş işçiliğinin başkenti Mardin, tarihi dokusu, geleneksel mimarisi ve eşsiz Mezopotamya manzarasıyla zamanda yolculuğa çıkarıyor.",
+          price: "1700₺'den başlayan fiyatlarla",
+          highlights: [
+            "Mardin Kalesi",
+            "Deyrulzafaran Manastırı",
+            "Eski Çarşı",
+            "Zinciriye Medresesi",
+          ],
+        },
+        gobekli: {
+          title: "Göbeklitepe",
+          description:
+            "Dünyanın en eski tapınağı olarak kabul edilen Göbeklitepe, tarihin sıfır noktası olarak adlandırılıyor. Arkeolojiye ilgi duyanlar için eşsiz bir deneyim sunuyor.",
+          price: "1900₺'den başlayan fiyatlarla",
+          highlights: [
+            "Tarih Öncesi Kalıntılar",
+            "Rehberli Turlar",
+            "Arkeoloji Müzesi",
+            "Yerel Mutfak Deneyimi",
+          ],
+        },
+        nemrut: {
+          title: "Nemrut Dağı",
+          description:
+            "UNESCO Dünya Mirası Listesi'nde yer alan Nemrut Dağı, dev heykelleri ve eşsiz gün doğumu manzarasıyla ziyaretçilerini büyülüyor.",
+          price: "2200₺'den başlayan fiyatlarla",
+          highlights: [
+            "Dev Heykeller",
+            "Gün Doğumu ve Batımı",
+            "Kommagene Krallığı Kalıntıları",
+            "Dağ Yürüyüşleri",
+          ],
+        },
       },
       blogContent: {
         title: "Seyahat Blogu",

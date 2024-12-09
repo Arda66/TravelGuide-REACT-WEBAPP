@@ -3,7 +3,8 @@ import { useFavorites } from "../contexts/FavoritesContext";
 import ShareButtons from "./ShareButtons";
 import { useTranslation } from "react-i18next";
 
-const DestinationCard = memo(({ dest, onSelect }) => {
+const DestinationCard = memo(({ dest, onSelect, t }) => {
+  // t'yi props olarak alıyoruz
   const { toggleFavorite, isFavorite } = useFavorites();
   const isFav = isFavorite("destinations", dest.id);
 
@@ -38,7 +39,7 @@ const DestinationCard = memo(({ dest, onSelect }) => {
           onClick={() => onSelect(dest)}
           className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
         >
-          Detayları Gör
+          {t("seeDetails")} {/* Burayı çeviri ile güncelliyoruz */}
         </button>
       </div>
     </div>
@@ -46,118 +47,52 @@ const DestinationCard = memo(({ dest, onSelect }) => {
 });
 
 function TravelList({ searchQuery }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); // i18n'i de alalım
   const [selectedDest, setSelectedDest] = useState(null);
   const [reserved, setReserved] = useState(false);
-  const [showAll, setShowAll] = useState(false); // 'Daha Fazla Gör' durumu
+  const [showAll, setShowAll] = useState(false);
+  const [itemsToShow, setItemsToShow] = useState(5);
 
-  const destinations = [
-    {
-      id: 1,
-      title: t("destinationsContent.cappadocia.title"),
-      description: t("destinationsContent.cappadocia.description"),
-      price: t("destinationsContent.cappadocia.price"),
-      image: "https://images.unsplash.com/photo-1647768283986-8442b7bc5c43",
-      highlights: t("destinationsContent.cappadocia.highlights", {
+  // Fonksiyonu destinations useMemo'sundan önce tanımlıyoruz
+  const getDestinationImage = (key) => {
+    const images = {
+      cappadocia:
+        "https://images.unsplash.com/photo-1647768283986-8442b7bc5c43",
+      antalya: "https://images.unsplash.com/photo-1711712667984-5b9b291272c0",
+      istanbul: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
+      pamukkale: "https://images.unsplash.com/photo-1600240644455-3edc55c375fe",
+      mardin: "https://images.unsplash.com/photo-1710835644558-10c4774c0795",
+      gobekli: "https://images.unsplash.com/photo-1581921171595-c27a4137d868",
+      ephesus: "https://images.unsplash.com/photo-1680191572004-4cd142ef7eeb",
+      nemrut: "https://images.unsplash.com/photo-1642667857358-aeb08be02e81",
+    };
+    return images[key];
+  };
+
+  // Destinations array'ini kaldırıp, destinasyonları dinamik olarak oluşturalım
+  const destinations = useMemo(() => {
+    const destinationKeys = [
+      "cappadocia",
+      "antalya",
+      "istanbul",
+      "pamukkale",
+      "mardin",
+      "gobekli",
+      "ephesus",
+      "nemrut",
+    ];
+
+    return destinationKeys.map((key, index) => ({
+      id: index + 1,
+      title: t(`destinationsContent.${key}.title`),
+      description: t(`destinationsContent.${key}.description`),
+      price: t(`destinationsContent.${key}.price`),
+      image: getDestinationImage(key), // Bu fonksiyonu aşağıda tanımlayacağız
+      highlights: t(`destinationsContent.${key}.highlights`, {
         returnObjects: true,
       }),
-    },
-    {
-      id: 2,
-      title: "Antalya",
-      image: "https://images.unsplash.com/photo-1711712667984-5b9b291272c0",
-      description:
-        "Turkuaz suları, antik kentleri ve muhteşem plajlarıyla Akdeniz'in incisi Antalya, hem tarih hem deniz tatili arayanlar için ideal.",
-      price: "1500₺'den başlayan fiyatlarla",
-      highlights: [
-        "Kaleiçi",
-        "Düden Şelalesi",
-        "Konyaaltı Plajı",
-        "Aspendos Antik Tiyatrosu",
-      ],
-    },
-    {
-      id: 3,
-      title: "İstanbul",
-      image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
-      description:
-        "İki kıtayı birleştiren şehir İstanbul, tarihi yarımadası, boğaz manzarası ve zengin kültürel mirası ile dünyanın en özel şehirlerinden biri.",
-      price: "2500₺'den başlayan fiyatlarla",
-      highlights: ["Ayasofya", "Topkapı Sarayı", "Kapalıçarşı", "Boğaz Turu"],
-    },
-    {
-      id: 4,
-      title: "Bodrum",
-      image: "https://images.unsplash.com/photo-1600240644455-3edc55c375fe",
-      description:
-        "Eğlence ve lüksün buluştuğu Bodrum, masmavi koyları, begonvil süslü sokakları ve canlı gece hayatıyla unutulmaz bir tatil vadediyor.",
-      price: "2200₺'den başlayan fiyatlarla",
-      highlights: [
-        "Bodrum Kalesi",
-        "Halikarnas Mozolesi",
-        "Bardakçı Koyu",
-        "Yalıkavak Marina",
-      ],
-    },
-    {
-      id: 5,
-      title: "Mardin",
-      image: "https://images.unsplash.com/photo-1710835644558-10c4774c0795",
-      description:
-        "Taş işçiliğinin başkenti Mardin, tarihi dokusu, geleneksel mimarisi ve eşsiz Mezopotamya manzarasıyla zamanda yolculuğa çıkarıyor.",
-      price: "1800���'den başlayan fiyatlarla",
-      highlights: [
-        "Mardin Kalesi",
-        "Deyrulzafaran Manastırı",
-        "Eski Çarşı",
-        "Zinciriye Medresesi",
-      ],
-    },
-    {
-      id: 6,
-      title: "Göbeklitepe",
-      image: "https://images.unsplash.com/photo-1515442261606-59c7b2f1e379",
-      description:
-        "Dünyanın en eski tapınağı olarak kabul edilen Göbeklitepe, tarihin sıfır noktası olarak adlandırılıyor. Arkeolojiye ilgi duyanlar için eşsiz bir deneyim sunuyor.",
-      price: "2300₺'den başlayan fiyatlarla",
-      highlights: [
-        "Tarih Öncesi Kalıntılar",
-        "Rehberli Turlar",
-        "Arkeoloji Müzesi",
-        "Yerel Mutfak Deneyimi",
-      ],
-    },
-    {
-      id: 7,
-      title: "Pamukkale",
-      image: "https://images.unsplash.com/photo-1585325701954-677ab1ec5e9a",
-      description:
-        "Bembeyaz travertenleri ve sıcak termal sularıyla ünlü Pamukkale, doğanın mucizesini gözler önüne seriyor.",
-      price: "1900₺'den başlayan fiyatlarla",
-      highlights: [
-        "Travertenler",
-        "Hierapolis Antik Kenti",
-        "Kleopatra Havuzu",
-        "Termal Oteller",
-      ],
-    },
-    {
-      id: 8,
-      title: "Nemrut Dağı",
-      image: "https://images.unsplash.com/photo-1582560478080-1a20bb05ca84",
-      description:
-        "UNESCO Dünya Mirası Listesi'nde yer alan Nemrut Dağı, dev heykelleri ve eşsiz gün doğumu manzarasıyla ziyaretçilerini büyülüyor.",
-      price: "2100₺'den başlayan fiyatlarla",
-      highlights: [
-        "Dev Heykeller",
-        "Gün Doğumu ve Batımı",
-        "Kommagene Krallığı Kalıntıları",
-        "Dağ Yürüyüşleri",
-      ],
-    },
-  ];
-
-  const [itemsToShow, setItemsToShow] = useState(5); // 5 öğe + 1 "Daha Fazla Gör" butonu
+    }));
+  }, [t, i18n.language]); // i18n.language'i dependency olarak ekliyoruz
 
   const handleReservation = () => {
     setReserved(true);
@@ -180,7 +115,7 @@ function TravelList({ searchQuery }) {
             .toLowerCase()
             .includes(searchQuery?.toLowerCase() || "")
       ),
-    [searchQuery]
+    [searchQuery, destinations, i18n.language] // destinations ve i18n.language'i ekledik
   );
 
   const displayedDestinations = useMemo(() => {
@@ -192,16 +127,14 @@ function TravelList({ searchQuery }) {
           .includes(searchQuery?.toLowerCase() || "")
     );
     return showAll ? filtered : filtered.slice(0, itemsToShow);
-  }, [searchQuery, showAll, itemsToShow]);
+  }, [searchQuery, showAll, itemsToShow, destinations, i18n.language]); // destinations ve i18n.language'i ekledik
 
   return (
     <>
       {filteredDestinations.length === 0 ? (
         <div className="text-center text-gray-600 py-8">
-          <p className="text-xl">
-            Aradığınız kriterlere uygun destinasyon bulunamadı.
-          </p>
-          <p className="mt-2">Lütfen farklı bir arama yapmayı deneyin.</p>
+          <p className="text-xl">{t("destinationsContent.notFound")}</p>
+          <p className="mt-2">{t("destinationsContent.tryAgain")}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -210,6 +143,7 @@ function TravelList({ searchQuery }) {
               key={dest.id}
               dest={dest}
               onSelect={setSelectedDest}
+              t={t} // t fonksiyonunu prop olarak geçiyoruz
             />
           ))}
           {!showAll && destinations.length > itemsToShow && (
@@ -219,9 +153,10 @@ function TravelList({ searchQuery }) {
             >
               <div className="p-4 text-center">
                 <div className="text-4xl mb-2">🌟</div>
-                <h3 className="text-xl font-bold mb-2">Daha Fazla Gör</h3>
+                <h3 className="text-xl font-bold mb-2">{t("seeMore")}</h3>
                 <p className="text-gray-600">
-                  {destinations.length - itemsToShow} destinasyon daha var
+                  {destinations.length - itemsToShow}{" "}
+                  {t("destinationsContent.seeMore")}
                 </p>
               </div>
             </div>
@@ -257,7 +192,8 @@ function TravelList({ searchQuery }) {
             </div>
             <p className="text-gray-600 mb-4">{selectedDest.description}</p>
             <div className="mb-4">
-              <h3 className="font-bold mb-2">Öne Çıkanlar:</h3>
+              <h3 className="font-bold mb-2">{t("highlights")}:</h3>{" "}
+              {/* Başlığı çeviri ile güncelliyoruz */}
               <ul className="list-disc list-inside">
                 {selectedDest.highlights.map((highlight, idx) => (
                   <li key={idx} className="text-gray-600">
@@ -274,11 +210,11 @@ function TravelList({ searchQuery }) {
                 onClick={handleReservation}
                 className="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition-colors"
               >
-                Rezervasyon Yap
+                {t("destinationsContent.makeReservation")}
               </button>
             ) : (
               <div className="mt-4 text-green-600 font-bold">
-                ✓ Rezervasyonunuz alındı! Yönlendiriliyorsunuz...
+                {t("destinationsContent.reservationSuccess")}
               </div>
             )}
           </div>
