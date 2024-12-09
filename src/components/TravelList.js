@@ -1,6 +1,7 @@
 import { useState, useMemo, memo } from "react";
 import { useFavorites } from "../contexts/FavoritesContext";
 import ShareButtons from "./ShareButtons";
+import { useTranslation } from "react-i18next";
 
 const DestinationCard = memo(({ dest, onSelect }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -45,6 +46,7 @@ const DestinationCard = memo(({ dest, onSelect }) => {
 });
 
 function TravelList({ searchQuery }) {
+  const { t } = useTranslation();
   const [selectedDest, setSelectedDest] = useState(null);
   const [reserved, setReserved] = useState(false);
   const [showAll, setShowAll] = useState(false); // 'Daha Fazla Gör' durumu
@@ -52,17 +54,13 @@ function TravelList({ searchQuery }) {
   const destinations = [
     {
       id: 1,
-      title: "Kapadokya",
+      title: t("destinationsContent.cappadocia.title"),
+      description: t("destinationsContent.cappadocia.description"),
+      price: t("destinationsContent.cappadocia.price"),
       image: "https://images.unsplash.com/photo-1647768283986-8442b7bc5c43",
-      description:
-        "Türkiye'nin en etkileyici doğal güzelliklerinden biri olan Kapadokya, peri bacaları, yeraltı şehirleri ve sıcak hava balon turlarıyla unutulmaz bir deneyim sunuyor.",
-      price: "2000₺'den başlayan fiyatlarla",
-      highlights: [
-        "Sıcak Hava Balonu",
-        "Göreme Açık Hava Müzesi",
-        "Yeraltı Şehirleri",
-        "Kaya Oteller",
-      ],
+      highlights: t("destinationsContent.cappadocia.highlights", {
+        returnObjects: true,
+      }),
     },
     {
       id: 2,
@@ -107,7 +105,7 @@ function TravelList({ searchQuery }) {
       image: "https://images.unsplash.com/photo-1710835644558-10c4774c0795",
       description:
         "Taş işçiliğinin başkenti Mardin, tarihi dokusu, geleneksel mimarisi ve eşsiz Mezopotamya manzarasıyla zamanda yolculuğa çıkarıyor.",
-      price: "1800₺'den başlayan fiyatlarla",
+      price: "1800���'den başlayan fiyatlarla",
       highlights: [
         "Mardin Kalesi",
         "Deyrulzafaran Manastırı",

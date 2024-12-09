@@ -135,7 +135,8 @@ function Blog() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-center mb-12">Seyahat Blogu</h1>
+      {/* Bu başlığı kaldırın çünkü App.js'de zaten var */}
+      {/* <h1 className="text-4xl font-bold text-center mb-12">Seyahat Blogu</h1> */}
 
       {/* Categories */}
       <div className="flex flex-wrap gap-4 justify-center mb-8">

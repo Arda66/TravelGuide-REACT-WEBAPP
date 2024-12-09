@@ -17,12 +17,12 @@ function Header({ onSearch }) {
     {
       code: "en",
       name: "English",
-      flag: <img src="/flags/gb.svg" alt="English" className="w-5 h-5" />,
+      flag: "https://flagcdn.com/w160/gb.png", // Increased resolution
     },
     {
       code: "tr",
       name: "Türkçe",
-      flag: <img src="/flags/tr.svg" alt="Türkçe" className="w-5 h-5" />,
+      flag: "https://flagcdn.com/w160/tr.png", // Increased resolution
     },
   ];
 
@@ -151,8 +151,19 @@ function Header({ onSearch }) {
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="flex items-center gap-2 hover:text-blue-200 py-2"
               >
-                {languages.find((lang) => lang.code === i18n.language)?.flag ||
-                  "🌐"}
+                <span>
+                  <img
+                    src={
+                      languages.find((lang) => lang.code === i18n.language)
+                        ?.flag
+                    }
+                    alt={
+                      languages.find((lang) => lang.code === i18n.language)
+                        ?.name
+                    }
+                    className="w-5 h-5 inline-block"
+                  />
+                </span>
                 <span>{i18n.language.toUpperCase()}</span>
                 <span
                   className={`transition-transform duration-200 ${
@@ -179,7 +190,11 @@ function Header({ onSearch }) {
                             : "text-gray-700"
                         }`}
                     >
-                      <span>{lang.flag}</span>
+                      <img
+                        src={lang.flag}
+                        alt={lang.name}
+                        className="w-5 h-5 object-cover"
+                      />
                       <span>{lang.name}</span>
                     </button>
                   ))}

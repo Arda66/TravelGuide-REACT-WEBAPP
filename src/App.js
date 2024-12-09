@@ -104,13 +104,16 @@ function App() {
                     className="container mx-auto px-4 py-16"
                   >
                     <h2 className="text-3xl font-bold text-center mb-12">
-                      Popüler Destinasyonlar
+                      {t("titles.popularDestinations")}
                     </h2>
                     <TravelList searchQuery={searchQuery} />
                   </section>
 
                   {/* Blog Section */}
                   <section id="blog">
+                    <h2 className="text-4xl font-bold text-center">
+                      {t("titles.travelBlog")}
+                    </h2>
                     <Blog />
                   </section>
 
@@ -118,11 +121,10 @@ function App() {
                   <section className="py-16 bg-gradient-to-b from-white to-gray-50">
                     <div className="container mx-auto px-4">
                       <h2 className="text-3xl font-bold text-center mb-4">
-                        Mutlu Müşterilerimiz
+                        {t("titles.testimonials")}
                       </h2>
                       <p className="text-gray-600 text-center mb-12">
-                        Unutulmaz seyahat deneyimleri yaşayan misafirlerimizin
-                        yorumları
+                        {t("titles.testimonialsSubtitle")}
                       </p>
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -171,36 +173,44 @@ function App() {
                   <section className="bg-gray-100 py-16">
                     <div className="container mx-auto px-4">
                       <h2 className="text-3xl font-bold text-center mb-12">
-                        Neden Bizi Seçmelisiniz?
+                        {t("whyChooseUs.title")}
                       </h2>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center p-6">
-                          <div className="text-4xl mb-4">🎯</div>
+                          <div className="text-4xl mb-4">
+                            {t("whyChooseUs.features.priceGuarantee.icon")}
+                          </div>
                           <h3 className="text-xl font-bold mb-2">
-                            En İyi Fiyat Garantisi
+                            {t("whyChooseUs.features.priceGuarantee.title")}
                           </h3>
                           <p className="text-gray-600">
-                            En uygun fiyatlarla unutulmaz tatil deneyimleri
-                            sunuyoruz.
+                            {t(
+                              "whyChooseUs.features.priceGuarantee.description"
+                            )}
                           </p>
                         </div>
                         <div className="text-center p-6">
-                          <div className="text-4xl mb-4">🎨</div>
+                          <div className="text-4xl mb-4">
+                            {t("whyChooseUs.features.specialRoutes.icon")}
+                          </div>
                           <h3 className="text-xl font-bold mb-2">
-                            Özel Seçilmiş Rotalar
+                            {t("whyChooseUs.features.specialRoutes.title")}
                           </h3>
                           <p className="text-gray-600">
-                            Uzman ekibimiz tarafından özenle seçilmiş benzersiz
-                            rotalar.
+                            {t(
+                              "whyChooseUs.features.specialRoutes.description"
+                            )}
                           </p>
                         </div>
                         <div className="text-center p-6">
-                          <div className="text-4xl mb-4">🎉</div>
+                          <div className="text-4xl mb-4">
+                            {t("whyChooseUs.features.support.icon")}
+                          </div>
                           <h3 className="text-xl font-bold mb-2">
-                            7/24 Destek
+                            {t("whyChooseUs.features.support.title")}
                           </h3>
                           <p className="text-gray-600">
-                            Seyahatinizin her anında yanınızdayız.
+                            {t("whyChooseUs.features.support.description")}
                           </p>
                         </div>
                       </div>
@@ -210,43 +220,43 @@ function App() {
                   {/* Special Offers */}
                   <section className="container mx-auto px-4 py-16">
                     <h2 className="text-3xl font-bold text-center mb-12">
-                      Özel Fırsatlar
+                      {t("specialOffers.title")}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-8 text-white">
                         <h3 className="text-2xl font-bold mb-4">
-                          Erken Rezervasyon Fırsatı
+                          {t("specialOffers.earlyBooking.title")}
                         </h3>
                         <p className="mb-4">
                           {showOfferDetails === "early"
-                            ? "✓ İndirim kodunuz: ERKEN25"
-                            : "Yaz tatili rezervasyonlarında %25'e varan indirimler!"}
+                            ? t("specialOffers.earlyBooking.code")
+                            : t("specialOffers.earlyBooking.description")}
                         </p>
                         <button
                           onClick={() => handleOfferClick("early")}
                           className="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors"
                         >
                           {showOfferDetails === "early"
-                            ? "Kopyalandı!"
-                            : "Detayları Gör"}
+                            ? t("specialOffers.earlyBooking.copied")
+                            : t("specialOffers.earlyBooking.buttonText")}
                         </button>
                       </div>
                       <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-lg p-8 text-white">
                         <h3 className="text-2xl font-bold mb-4">
-                          Son Dakika Fırsatları
+                          {t("specialOffers.lastMinute.title")}
                         </h3>
                         <p className="mb-4">
                           {showOfferDetails === "last"
-                            ? "✓ İndirim kodunuz: SONDAKIKA20"
-                            : "Bu haftaya özel son dakika fırsatlarını kaçırmayın!"}
+                            ? t("specialOffers.lastMinute.code")
+                            : t("specialOffers.lastMinute.description")}
                         </p>
                         <button
                           onClick={() => handleOfferClick("last")}
                           className="bg-white text-green-600 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors"
                         >
                           {showOfferDetails === "last"
-                            ? "Kopyalandı!"
-                            : "Detayları Gör"}
+                            ? t("specialOffers.lastMinute.copied")
+                            : t("specialOffers.lastMinute.buttonText")}
                         </button>
                       </div>
                     </div>

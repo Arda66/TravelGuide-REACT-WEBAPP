@@ -80,6 +80,115 @@ const resources = {
         contact: "Contact",
         rights: "All rights reserved.",
       },
+      destinationsContent: {
+        title: "Popular Destinations",
+        seeMore: "See More",
+        notFound: "No destinations found matching your search.",
+        tryAgain: "Please try a different search.",
+        reservationSuccess: "✓ Your reservation is confirmed! Redirecting...",
+        makeReservation: "Make Reservation",
+        cappadocia: {
+          title: "Cappadocia",
+          description:
+            "One of Turkey's most impressive natural beauties, Cappadocia offers an unforgettable experience with its fairy chimneys, underground cities and hot air balloon tours.",
+          price: "Starting from $100",
+          highlights: [
+            "Hot Air Balloon",
+            "Göreme Open Air Museum",
+            "Underground Cities",
+            "Cave Hotels",
+          ],
+        },
+        // ... other destinations
+      },
+      blogContent: {
+        title: "Travel Blog",
+        categories: {
+          all: "All",
+          summer: "Summer",
+          culture: "Culture Tours",
+          gastronomy: "Gastronomy",
+          tips: "Travel Tips",
+          nature: "Nature",
+          adventure: "Adventure",
+        },
+        posts: {
+          seeMore: "See More Posts",
+          remaining: "more posts available",
+          readMore: "Read More",
+        },
+      },
+      whyChooseUs: {
+        title: "Why Choose Us?",
+        features: {
+          priceGuarantee: {
+            icon: "🎯",
+            title: "Best Price Guarantee",
+            description:
+              "We offer unforgettable vacation experiences at the best prices",
+          },
+          specialRoutes: {
+            icon: "🎨",
+            title: "Special Routes",
+            description: "Unique routes carefully selected by our expert team",
+          },
+          support: {
+            icon: "🎉",
+            title: "24/7 Support",
+            description: "We are with you at every moment of your journey",
+          },
+        },
+      },
+      specialOffers: {
+        title: "Special Offers",
+        earlyBooking: {
+          title: "Early Booking Offer",
+          description: "Up to 25% discount on summer vacation bookings!",
+          buttonText: "See Details",
+          code: "✓ Your discount code: EARLY25",
+          copied: "Copied!",
+        },
+        lastMinute: {
+          title: "Last Minute Deals",
+          description: "Don't miss this week's special last minute deals!",
+          buttonText: "See Details",
+          code: "✓ Your discount code: LASTMIN20",
+          copied: "Copied!",
+        },
+      },
+      titles: {
+        testimonials: "Happy Customers",
+        testimonialsSubtitle:
+          "Experience unforgettable travel moments from our guests",
+        popularDestinations: "Popular Destinations",
+        travelBlog: "Travel Blog",
+      },
+      footer: {
+        about: {
+          title: "TravelGuide",
+          description: "Your guide for unforgettable travel experiences.",
+        },
+        newsletter: {
+          title: "Join Our Newsletter",
+          placeholder: "Your email address",
+          button: "Subscribe",
+          success: "Successfully subscribed to our newsletter!",
+        },
+        social: {
+          title: "Social Media",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          twitter: "Twitter",
+        },
+        contact: {
+          title: "Contact",
+          email: "Email: info@travelguide.com",
+          phone: "Phone: +90 123 456 7890",
+          address: "Address: Istanbul, Turkey",
+        },
+        copyright:
+          "© 2024 TravelGuide. Made by Arda Dumanoğlu. All rights reserved.",
+      },
     },
   },
   tr: {
@@ -159,6 +268,116 @@ const resources = {
         social: "Sosyal Medya",
         contact: "İletişim",
         rights: "Tüm hakları saklıdır.",
+      },
+      destinationsContent: {
+        title: "Popüler Destinasyonlar",
+        seeMore: "Daha Fazla Gör",
+        notFound: "Aradığınız kriterlere uygun destinasyon bulunamadı.",
+        tryAgain: "Lütfen farklı bir arama yapmayı deneyin.",
+        reservationSuccess: "✓ Rezervasyonunuz alındı! Yönlendiriliyorsunuz...",
+        makeReservation: "Rezervasyon Yap",
+        cappadocia: {
+          title: "Kapadokya",
+          description:
+            "Türkiye'nin en etkileyici doğal güzelliklerinden biri olan Kapadokya, peri bacaları, yeraltı şehirleri ve sıcak hava balon turlarıyla unutulmaz bir deneyim sunuyor.",
+          price: "2000₺'den başlayan fiyatlarla",
+          highlights: [
+            "Sıcak Hava Balonu",
+            "Göreme Açık Hava Müzesi",
+            "Yeraltı Şehirleri",
+            "Kaya Oteller",
+          ],
+        },
+        // ... other destinations
+      },
+      blogContent: {
+        title: "Seyahat Blogu",
+        categories: {
+          all: "Tümü",
+          summer: "Yaz Tatili",
+          culture: "Kültür Turları",
+          gastronomy: "Gastronomi",
+          tips: "Seyahat İpuçları",
+          nature: "Doğa",
+          adventure: "Macera",
+        },
+        posts: {
+          seeMore: "Daha Fazla Göster",
+          remaining: "blog daha var",
+          readMore: "Devamını Oku",
+        },
+      },
+      whyChooseUs: {
+        title: "Neden Bizi Seçmelisiniz?",
+        features: {
+          priceGuarantee: {
+            icon: "🎯",
+            title: "En İyi Fiyat Garantisi",
+            description:
+              "En uygun fiyatlarla unutulmaz tatil deneyimleri sunuyoruz",
+          },
+          specialRoutes: {
+            icon: "🎨",
+            title: "Özel Seçilmiş Rotalar",
+            description:
+              "Uzman ekibimiz tarafından özenle seçilmiş benzersiz rotalar",
+          },
+          support: {
+            icon: "🎉",
+            title: "7/24 Destek",
+            description: "Seyahatinizin her anında yanınızdayız",
+          },
+        },
+      },
+      specialOffers: {
+        title: "Özel Fırsatlar",
+        earlyBooking: {
+          title: "Erken Rezervasyon Fırsatı",
+          description: "Yaz tatili rezervasyonlarında %25'e varan indirimler!",
+          buttonText: "Detayları Gör",
+          code: "✓ İndirim kodunuz: ERKEN25",
+          copied: "Kopyalandı!",
+        },
+        lastMinute: {
+          title: "Son Dakika Fırsatları",
+          description: "Bu haftaya özel son dakika fırsatlarını kaçırmayın!",
+          buttonText: "Detayları Gör",
+          code: "✓ İndirim kodunuz: SONDAKIKA20",
+          copied: "Kopyalandı!",
+        },
+      },
+      titles: {
+        testimonials: "Mutlu Müşterilerimiz",
+        testimonialsSubtitle:
+          "Unutulmaz seyahat deneyimleri yaşayan misafirlerimizin yorumları",
+        popularDestinations: "Popüler Destinasyonlar",
+        travelBlog: "Seyahat Blogu",
+      },
+      footer: {
+        about: {
+          title: "TravelGuide",
+          description: "Unutulmaz seyahat deneyimleri için rehberiniz.",
+        },
+        newsletter: {
+          title: "Bültenimize Katılın",
+          placeholder: "E-posta adresiniz",
+          button: "Abone Ol",
+          success: "Bültenimize başarıyla abone oldunuz!",
+        },
+        social: {
+          title: "Sosyal Medya",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          twitter: "Twitter",
+        },
+        contact: {
+          title: "İletişim",
+          email: "Email: info@travelguide.com",
+          phone: "Tel: +90 123 456 7890",
+          address: "Adres: İstanbul, Türkiye",
+        },
+        copyright:
+          "© 2024 TravelGuide. Made by Arda Dumanoğlu. Tüm hakları saklıdır.",
       },
     },
   },
