@@ -56,7 +56,9 @@ function Footer() {
 
           {/* Social Media Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Sosyal Medya</h4>
+            <h4 className="text-lg font-bold mb-4">
+              {t("footer.social.title")}
+            </h4>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-blue-400">
                 Facebook
@@ -72,7 +74,9 @@ function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-bold mb-4">İletişim</h4>
+            <h4 className="text-lg font-bold mb-4">
+              {t("footer.contact.title")}
+            </h4>
             <p className="text-gray-400">Email: info@travelguide.com</p>
             <p className="text-gray-400">Tel: +90 123 456 7890</p>
             <p className="text-gray-400">Adres: İstanbul, Türkiye</p>

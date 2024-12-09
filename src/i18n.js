@@ -279,6 +279,47 @@ const resources = {
           },
         },
       },
+      blogPost: {
+        posts: {
+          1: {
+            id: 1,
+            title: "2024 Summer's Top 5 Beaches",
+            category: "summer",
+            image:
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+            date: "April 15, 2024",
+            author: "Ayşe Yılmaz",
+            authorTitle: "Travel Writer & Photographer",
+            readingTime: "8 minutes",
+            views: 12500,
+            likes: 834,
+            tags: ["beach", "summer", "vacation", "travel", "nature"],
+            summary:
+              "Discover Turkey's most beautiful beaches you must visit this summer...",
+            content: `
+              <div class="space-y-6">
+                <p class="text-lg leading-relaxed">Turkey's magnificent beaches welcome thousands of tourists every year. These paradise corners, which stand out with their unique natural beauties, crystal clear waters, and magnificent beaches, offer an unforgettable holiday experience...</p>
+                
+                <div class="space-y-8 mt-8">
+                  <div>
+                    <h3 class="text-2xl font-semibold mb-3">1. Kaputaş Beach - Kaş</h3>
+                    <p>With its magnificent turquoise waters and impressive landscape, Kaputaş Beach is one of Turkey's most photogenic spots...</p>
+                    <div class="mt-4 space-y-2">
+                      <p class="font-medium">🏊‍♂️ Featured Activities:</p>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Snorkeling to discover colorful marine life</li>
+                        <li>Perfect spots for sunset photography</li>
+                        <li>Cliff jumping (at safe spots)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          // ... diğer İngilizce post içerikleri
+        },
+      },
       whyChooseUs: {
         title: "Why Choose Us?",
         features: {
@@ -627,6 +668,47 @@ const resources = {
             summary:
               "Tarihi yarımada ve sokak lezzetlerinin izinde unutulmaz bir gezi...",
           },
+        },
+      },
+      blogPost: {
+        posts: {
+          1: {
+            id: 1,
+            title: "2024 Yazının En Popüler 5 Plajı",
+            category: "summer",
+            image:
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+            date: "15 Nisan 2024",
+            author: "Ayşe Yılmaz",
+            authorTitle: "Seyahat Yazarı & Fotoğrafçı",
+            readingTime: "8 dakika",
+            views: 12500,
+            likes: 834,
+            tags: ["plaj", "yaz", "tatil", "gezi", "doğa"],
+            summary:
+              "Bu yaz mutlaka ziyaret etmeniz gereken Türkiye'nin en güzel plajlarını sizler için derledik...",
+            content: `
+              <div class="space-y-6">
+                <p class="text-lg leading-relaxed">Türkiye'nin muhteşem plajları her yıl binlerce turisti ağırlıyor. Eşsiz doğal güzellikleri, berrak suları ve muhteşem kumsallarıyla öne çıkan bu plajlar, unutulmaz bir tatil deneyimi sunuyor...</p>
+                
+                <div class="space-y-8 mt-8">
+                  <div>
+                    <h3 class="text-2xl font-semibold mb-3">1. Kaputaş Plajı - Kaş</h3>
+                    <p>Muhteşem turkuaz suları ve etkileyici manzarasıyla Kaputaş Plajı, Türkiye'nin en fotojenik noktalarından biri...</p>
+                    <div class="mt-4 space-y-2">
+                      <p class="font-medium">🏊‍♂️ Öne Çıkan Aktiviteler:</p>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Şnorkelle dalış yapabilir, renkli deniz yaşamını keşfedebilirsiniz</li>
+                        <li>Gün batımı fotoğrafçılığı için ideal manzaralar</li>
+                        <li>Kayalıklardan atlayış (güvenli noktalarda)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          // ... diğer Türkçe post içerikleri
         },
       },
       whyChooseUs: {
